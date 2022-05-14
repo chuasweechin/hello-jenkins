@@ -22,7 +22,7 @@ pipeline {
     stage("deploy") {
       when {
         expression {
-          BRANCH_NAME == 'deploy'
+          BRANCH_NAME == 'main'
         }
       }
       steps {
