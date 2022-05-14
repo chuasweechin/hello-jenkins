@@ -9,7 +9,7 @@ pipeline {
     stage("build") {
       steps {
         echo "building app...."
-        echo "building version ${APP_VERSION}...."
+        echo "building version ${APP_VERSION}...."        
       }
     }
     
@@ -27,6 +27,12 @@ pipeline {
       }
       steps {
         echo "deploy app...."
+        
+        withCredentials([
+          usernamePassword(credentials: "github-account", usernameVariable: USERNAME, passwordVariable: PASSWORD)
+        ]) {
+          sh "some script ${USERNAME}"
+        }
       }
     }
   }
