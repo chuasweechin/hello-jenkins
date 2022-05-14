@@ -5,6 +5,11 @@ pipeline {
     APP_VERSION = "1.0.0"
   }
   
+  parameters {
+    string(name: "APP", choices: ["frontend", "backend"], defaultValue: "frontend", description: "")
+    booleanParam(name: 'executeTests', defaultValue: false, description: "")
+  }
+  
   stages {
     stage("build") {
       steps {
@@ -14,6 +19,12 @@ pipeline {
     }
     
     stage("test") {
+      when {
+        expression {
+          params.executeTests
+        }
+      }
+      
       steps {
         echo "test app...."
       }
@@ -25,6 +36,7 @@ pipeline {
           BRANCH_NAME == 'main'
         }
       }
+      
       steps {
         echo "deploy app...."
         
