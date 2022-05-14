@@ -15,6 +15,11 @@ pipeline {
     }
     
     stage("deploy") {
+      when {
+        expression {
+          BRANCH_NAME == 'deploy'
+        }
+      }
       steps {
         echo "deploy app...."
       }
