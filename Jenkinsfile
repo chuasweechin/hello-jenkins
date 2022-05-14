@@ -13,7 +13,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        echo 'building app....'
+        echo "building ${params.APP}...."
         echo 'building version ${APP_VERSION}....'        
       }
     }
@@ -26,7 +26,7 @@ pipeline {
       }
       
       steps {
-        echo 'test app....'
+        echo "test ${params.APP}...."
       }
     }
     
@@ -38,7 +38,7 @@ pipeline {
       }
       
       steps {
-        echo 'deploy app....'
+        echo "deploy ${params.APP}...."
         
         withCredentials([
           usernamePassword(credentialsId: 'github_account', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')
