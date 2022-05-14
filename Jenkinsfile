@@ -41,7 +41,7 @@ pipeline {
         echo 'deploy app....'
         
         withCredentials([
-          usernamePassword(credentials: 'github_account', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')
+          usernamePassword(credentialsId: 'github_account', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')
         ]) {
           echo "some script ${USERNAME}...."
         }
