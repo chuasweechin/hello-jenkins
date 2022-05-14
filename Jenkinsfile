@@ -2,23 +2,23 @@ pipeline {
   agent any
   
   environment {
-    APP_VERSION = "1.0.0"
+    APP_VERSION = '1.0.0'
   }
   
   parameters {
-    choice(name: "APP", choices: ["frontend", "backend"], description: "")
-    booleanParam(name: 'executeTests', defaultValue: false, description: "")
+    choice(name: 'APP', choices: ['frontend', 'backend'], description: '')
+    booleanParam(name: 'executeTests', defaultValue: false, description: '')
   }
   
   stages {
-    stage("build") {
+    stage('build') {
       steps {
-        echo "building app...."
-        echo "building version ${APP_VERSION}...."        
+        echo 'building app....'
+        echo 'building version ${APP_VERSION}....'        
       }
     }
     
-    stage("test") {
+    stage('test') {
       when {
         expression {
           params.executeTests
@@ -26,11 +26,11 @@ pipeline {
       }
       
       steps {
-        echo "test app...."
+        echo 'test app....'
       }
     }
     
-    stage("deploy") {
+    stage('deploy') {
       when {
         expression {
           BRANCH_NAME == 'main'
@@ -38,12 +38,12 @@ pipeline {
       }
       
       steps {
-        echo "deploy app...."
+        echo 'deploy app....'
         
         withCredentials([
-          usernamePassword(credentials: "github_account", usernameVariable: "USERNAME", passwordVariable: "PASSWORD")
+          usernamePassword(credentials: 'github_account', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')
         ]) {
-          sh "some script ${USERNAME}...."
+          echo "some script ${USERNAME}...."
         }
       }
     }
