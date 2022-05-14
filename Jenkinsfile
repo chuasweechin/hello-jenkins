@@ -43,7 +43,7 @@ pipeline {
         withCredentials([
           usernamePassword(credentials: "github-account", usernameVariable: USERNAME, passwordVariable: PASSWORD)
         ]) {
-          echo "some script ${USERNAME}"
+          sh "some script ${USERNAME}"
         }
       }
     }
