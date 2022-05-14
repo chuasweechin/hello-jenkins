@@ -6,7 +6,7 @@ pipeline {
   }
   
   parameters {
-    choice(name: "APP", choices: ["frontend", "backend"], defaultValue: "frontend", description: "")
+    choice(name: "APP", choices: ["frontend", "backend"], description: "")
     booleanParam(name: 'executeTests', defaultValue: false, description: "")
   }
   
